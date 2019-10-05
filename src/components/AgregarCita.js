@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { agregarCitaAction } from '../actions/citasActions';
+import uuid from 'uuid/v4';
 
 const AgregarCita = () => {
 	// State del componente
@@ -8,6 +11,10 @@ const AgregarCita = () => {
 	const [ hora, guardarHora ] = useState('');
 	const [ sintomas, guardarSintomas ] = useState('');
 
+	// Dispatch para ejecutar nuestras acciones
+	const dispatch = useDispatch();
+	const agregarNuevaCita = (cita) => dispatch(agregarCitaAction(cita));
+
 	// Cuando el formulario es enviando
 	const submitNuevaCita = (e) => {
 		e.preventDefault();
@@ -15,8 +22,21 @@ const AgregarCita = () => {
 		// Validar el Formulario
 
 		// Crear la nueva cita
+		agregarNuevaCita({
+			id: uuid(),
+			mascota,
+			propietario,
+			fecha,
+			hora,
+			sintomas
+		});
 
 		// Reiniciar el formulario
+		guardarMascota('');
+		guardarPropietario('');
+		guardarFecha('');
+		guardarHora('');
+		guardarSintomas('');
 	};
 
 	return (
