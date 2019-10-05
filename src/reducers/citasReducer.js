@@ -1,15 +1,15 @@
 const initialState = {
-    citas: []
-}
+	citas: []
+};
 
 export default function(state = initialState, action) {
-    switch(action.types) {
-        case 'AGREGAR_CITA':
-            return {
-                ...state,
-                citas: [...state.citas, action.payload]
-            }
-        default:
-            return state;
-    }
+	switch (action.type) {
+		case 'AGREGAR_CITA':
+			return {
+				...state,
+				citas: [ ...state.citas, action.payload ]
+			};
+		default:
+			return state;
+	}
 }
